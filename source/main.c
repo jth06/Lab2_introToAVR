@@ -1,7 +1,7 @@
 /*	Author: jhuh014
  *  Partner(s) Name: Alex DeVictoria
- *	Lab Section:
- *	Assignment: Lab #  Exercise #
+ *	Lab Section: 23
+ *	Assignment: Lab 2  Exercise 3
  *	Exercise Description: [optional - include for your own benefit]
  *
  *	I acknowledge all content contained herein, excluding template or example
@@ -15,37 +15,47 @@
 int main(void) {
     /* Insert DDR and PORT initializations */
     DDRA = 0x00; PORTA = 0xFF;
-    DDRC = 0xFF; PORTC = 0x00; // Initialize PORTB output to 0’s
-    unsigned char tmpB = 0x00;
-    unsigned char tmpA = 0x00;
-    unsigned char tmpC = 0x00;
-    unsigned char tmpD = 0x00;
-    unsigned char cntavail = 0x00;
+    DDRB = 0x00; PORTB = 0xFF;
+    DDRC = 0x00; PORTC = 0xFF; // Initialize PORTC output to 0’s
+    DDRD = 0xFF; PORTD = 0x00;
+
+    
+    unsigned short tot = 0x00;
+
+    unsigned char diff = 0x00;
+    unsigned char result = 0x00;
     
     /* Insert your solution below */
     while (1) {
-        tmpA = PINA & 0x01;
-        tmpB = PINA & 0x02;
-        tmpC = PINA & 0x04;
-        tmpD = PINA & 0x08;
-        cntavail = 0x00;
+        tot = 0x00;
+        diff = 0x00;
+        result = 0x00;
 
-        if (tmpA != 0x01) {
-            cntavail = cntavail + 1;
+        tot = PINA + PINB + PINC;
+
+        if (tot > 140) {
+            result = result | 0x01;
         }
 
-        if (tmpB != 0x02) {
-            cntavail = cntavail + 1;
+        if (PINA >= PINC) {
+            diff = PINA - PINC;
         }
 
-        if (tmpC != 0x04) {
-            cntavail = cntavail + 1;
+        else {
+            diff = PINC - PINA;
         }
 
-        if (tmpD != 0x08) {
-            cntavail = cntavail + 1;
+        if (diff > 80) {
+            result = result | 0x02;
         }
-        PORTC = cntavail;
+
+        tot = tot >> 2;
+
+        tot = tot << 2;
+
+        result = result | tot;
+
+        PORTD = result;
     }
     return 0;
 }
