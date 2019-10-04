@@ -1,7 +1,7 @@
 /*	Author: jhuh014
  *  Partner(s) Name: Alex DeVictoria
- *	Lab Section:
- *	Assignment: Lab #  Exercise #
+ *	Lab Section: 23
+ *	Assignment: Lab 2  Exercise 2
  *	Exercise Description: [optional - include for your own benefit]
  *
  *	I acknowledge all content contained herein, excluding template or example
